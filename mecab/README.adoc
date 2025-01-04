@@ -1,0 +1,71 @@
+
+
+== mecab セットアップ ubuntu
+
+[source,sh]
+----
+$ sudo apt -y update
+$ sudo apt -yV upgrade
+$ sudo apt -y install mecab libmecab-dev mecab-utils mecab-jumandic-utf8 mecab-naist-jdic python3-mecab
+----
+
+
+== mecab 動作確認
+
+* mecabコマンドを実行
+* 日本語を入力
+* CTRL + Dで解析開始&終了
+
+[source,sh]
+----
+takeo@takeo-ThinkPad-E14-Gen-4:~/dev/python-learning$ mecab
+こんにちは、お前の名前はなんというのだ？
+こんにちは	感動詞,*,*,*,*,*,こんにちは,コンニチハ,コンニチワ,,
+、	記号,読点,*,*,*,*,、,、,、,,
+お前	名詞,代名詞,一般,*,*,*,お前,オマエ,オマエ,,
+の	助詞,連体化,*,*,*,*,の,ノ,ノ,,
+名前	名詞,一般,*,*,*,*,名前,ナマエ,ナマエ,,
+は	助詞,係助詞,*,*,*,*,は,ハ,ワ,,
+なんと	副詞,一般,*,*,*,*,なんと,ナント,ナント,,
+いう	動詞,自立,*,*,五段・ワ行促音便,基本形,いう,イウ,イウ,いう/云う/言う/謂う,
+の	名詞,非自立,一般,*,*,*,の,ノ,ノ,,
+だ	助動詞,*,*,*,特殊・ダ,基本形,だ,ダ,ダ,,
+？	記号,一般,*,*,*,*,？,？,？,,
+EOS
+^C
+----
+
+== python系ライブラリを導入
+
+. mecab-python3をインストール
++
+[source,sh]
+----
+takeo@takeo-ThinkPad-E14-Gen-4:~/dev/python-learning$ pip install mecab-python3
+Defaulting to user installation because normal site-packages is not writeable
+Collecting mecab-python3
+  Downloading mecab_python3-1.0.10-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.2 kB)
+Downloading mecab_python3-1.0.10-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (581 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 581.7/581.7 kB 6.5 MB/s eta 0:00:00
+Installing collected packages: mecab-python3
+Successfully installed mecab-python3-1.0.10
+----
++
+. 辞書(ipadic)をインストール
++
+[source,sh]
+----
+takeo@takeo-ThinkPad-E14-Gen-4:~/dev/python-learning/mecab$ pip install ipadic
+Defaulting to user installation because normal site-packages is not writeable
+Collecting ipadic
+  Downloading ipadic-1.0.0.tar.gz (13.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.4/13.4 MB 4.3 MB/s eta 0:00:00
+  Preparing metadata (setup.py) ... done
+Building wheels for collected packages: ipadic
+  Building wheel for ipadic (setup.py) ... done
+  Created wheel for ipadic: filename=ipadic-1.0.0-py3-none-any.whl size=13556723 sha256=3d4df7b31907f1c5d9d7996633a89745bd2b1f2166e729fcbe0bd0406c1ff009
+  Stored in directory: /home/takeo/.cache/pip/wheels/5b/ea/e3/2f6e0860a327daba3b030853fce4483ed37468bbf1101c59c3
+Successfully built ipadic
+Installing collected packages: ipadic
+Successfully installed ipadic-1.0.0
+----
