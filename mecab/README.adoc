@@ -69,3 +69,26 @@ Successfully built ipadic
 Installing collected packages: ipadic
 Successfully installed ipadic-1.0.0
 ----
+
+== Docker
+
+=== イメージの作成
+
+[source,sh]
+----
+$ docker build -t mecab .
+----
+
+=== スクリプト実行方法
+
+
+* ディレクトリをマウント
+* スクリプトへのコマンドを渡す
+
+[source,sh]
+----
+$ docker run -v $PWD:/app mecab python main.py
+----
+
+
+
